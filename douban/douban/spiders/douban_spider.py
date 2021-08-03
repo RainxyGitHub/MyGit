@@ -26,7 +26,7 @@ class DoubanSpiderSpider(scrapy.Spider):
             douban_item['star'] = i_item.xpath(".//span[@class = 'rating_num']/text()").extract_first()
             douban_item['evaluate'] = i_item.xpath(".//div[@class = 'star']//span[4]/text()").extract_first()
             douban_item['describe'] = i_item.xpath(".//div[@class = 'bd']/p[@class = 'quote']/span/text()").extract_first()
-            #你需要将数据yield到pipelines里面去
+            #你需要将数据yield到pipelines里面去,这里的yield当成一个返回就行,只不过这里是一个生成器的返回.这块查过资料.
             yield douban_item
         #解析下一页规则,取的后页的xpath
         next_link = response.xpath("//span[@class = 'next']/link/@href").extract()
